@@ -1,0 +1,24 @@
+{
+  "name": "jsprojects",
+  "version": "1.0.0",
+  "description": "My first steps coding in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narajaon/JSprojects.git"
+  },
+  "author": "narajaon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/narajaon/JSprojects/issues"
+  },
+  "homepage": "https://github.com/narajaon/JSprojects#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "hbs": "^4.0.1",
+    "nodemon": "^1.17.2"
+  }
+}
