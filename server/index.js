@@ -1,12 +1,14 @@
 const express = require('express');
 const fs = require('fs');
 const hbs = require('hbs');
+const path = require('path');
 const CL = console.log;
 const app = express();
 const homeHbs = {
 		pageName : 'Home',
 		welcomeMsg : 'Welcome to the internet'
 };
+const homePath = path.join(__dirname + '/..');
 const aboutHbs = {
 		pageName : 'About',
 };
@@ -19,7 +21,7 @@ hbs.registerHelper('screamIt', (string) => {
 	return string.toUpperCase();
 });
 
-hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerPartials(homePath + '/views/partials');
 
 app.set('view engine', 'hbs');
 
@@ -27,7 +29,7 @@ app.use((req, res, next) => {
 	const currDate = new Date().toString();
 	const log = `${currDate} : ${req.method} ${req.url}`;
 
-	fs.appendFile('server.log', `${log}\n`, (err) => {
+	fs.appendFile('./server/server.log', `${log}\n`, (err) => {
 		CL('Could not append log file');
 	});
 	next();
@@ -42,5 +44,5 @@ app.get('/about', (req, res) => {
 });
 
 app.listen(3000, () => {
-	CL(__dirname);
+	CL();
 });
