@@ -20,6 +20,10 @@ io.on('connection', (socket) => {
 	socket.broadcast.emit('newUser', msgUtils
 		.constructor('Bot', 'A new user joined the chat !'));
 
+	socket.on('newMsg', (newMsg) => {
+		CL(`[${newMsg.date}] ${newMsg.from} said '${newMsg.message}'`);
+	});
+
 	socket.on('disconnect', () => {
 		CL('[io]	User disconnected');
 	});

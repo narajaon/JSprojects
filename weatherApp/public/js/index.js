@@ -20,3 +20,5 @@ socket.on('disconnect', function () {
 socket.on('newUser', function (newUser) {
 	CL(newUser.message);
 });
+
+//socket.emit('newMsg', msgUtils.constructor('User', 'Coucou !'));

@@ -1,0 +1,13 @@
+form {
+	display : flex;
+	flex-direction : column;
+}
+
+input {
+	width : 20%;
+	min-width : 100px;
+}
+
+[type=submit] {
+	background : grey;
+}
