@@ -1,10 +1,13 @@
 form {
-    display : flex;
 }
 
 input {
-	width : 10%;
-	min-width : 100px;
+    width : 10%;
+    min-width : 100px;
+}
+
+ul {
+    list-style : circle;
 }
 
 [type=submit] {

@@ -20,8 +20,14 @@ app.post('/add', urlencodedParser, (req, res) => {
     res.render('index', {pageName: 'Home page', todoList: todoList});
 });
 
+//removing clicked todo from list
+app.delete('/remove', urlencodedParser, (req, res) => {
+    todoList.filter(item => item != req.body.todo);
+    res.render('index', {pageName: 'Home page', todoList: todoList});
+});
+
 app.get('/', (req, res) => {
-    res.render('index', {pageName : 'Home page'});
+    res.render('index', {pageName : 'Home page', todoList: null});
 });
 
 app.listen(currentPort, () => {
