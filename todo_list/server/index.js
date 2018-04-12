@@ -1,28 +1,29 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
-const currentPort = 3000;
-const CL = console.log;
 const hbs = require('hbs');
 
+const app = express();
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+const currentPort = 3000;
+const CL = console.log;
+const todoList = [];
+
+//setting hbs as the view engine
 app.set('view engine', 'hbs');
 
+//setting assets has a static directory
 app.use('/', express.static('assets'));
 
-app.post('/contact', urlencodedParser, (req, res) => {
-	const userInfo = {
-		userMail : req.body.email,
-		userName : req.body.who
-	};
-
-	res.render('contact', userInfo);
+//adding the input to the todo list
+app.post('/add', urlencodedParser, (req, res) => {
+    todoList.push(req.body.todo);
+    res.render('index', {pageName: 'Home page', todoList: todoList});
 });
 
 app.get('/', (req, res) => {
-	res.render('index', {pageName : 'Home page'});
+    res.render('index', {pageName : 'Home page'});
 });
 
 app.listen(currentPort, () => {
-	CL(`listening to port ${currentPort}`);
+    CL(`listening to port ${currentPort}`);
 });
