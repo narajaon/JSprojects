@@ -1,15 +1,17 @@
 let http = require('http')
+let bl = require('bl')
 let CL = console.log
 let link = process.argv[2]
 let result = ""
 
-http.get(link, function(res) {
-    res.setEncoding('utf8')
-    res.on('error', (e) => CL(e.message))
-    res.on('data', function (data) {
+http.get(link, function (res) {
+    res.pipe(bl(function(err, data) {
+        if (err) {
+            return CL(err.message)
+        }
         let formated = data.toString()
-        CL(formated.length)
+        let size = formated.length
+        CL(size)
         CL(formated)
-    })
-    res.on('end', () => CL(result))
+    }))
 })
